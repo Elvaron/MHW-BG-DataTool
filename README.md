@@ -12,13 +12,11 @@ The tool itself and its source code are provided under the CC0-1.0 license.
 
 Neither the original author nor other contributors to this repository are in a position to grant any license whatsoever concerning the copyrights, trademarks and intellectual property of Steamforged Games Ltd. and CAPCOM Co., LTD, respectively.
 
-## Syntax
-
-### JSON
+## JSON
 
 The primary data structure utilized in this repository is based on the JSON format.
 
-#### Localization
+### Localization
 
 In order to allow the community to translate content into any given langauge, data files are to be stored in UTF-8 encoding.
 
@@ -44,7 +42,7 @@ Any given implementation is suggested to provide a sensible default value.
 E.g., when no translation is offered for a given `localized string` under the requested language tag, the first defined text is used.
 This provides translators with placeholder texts.
 
-#### Root
+### Root
 
 The root node of each data file contains a number of (optional) children:
 
@@ -65,13 +63,13 @@ The root node of each data file contains a number of (optional) children:
 
 Further structural data may be suggested by the community in due time.
 
-#### Glossary
+### Glossary
 
 Current glossary terms:
 
 + `rule-box-concat` to display the *or* between alternatives on gathering phase cards
 
-#### Quest Book
+### Quest Book
 
 Each quest book may contain the following information:
 
@@ -86,8 +84,8 @@ Each quest book may contain the following information:
 Each quest has a number of properties:
 
 + `target` is the localizable name of the goal of the quest, usually a monster name
-+ `monster-id` is the canonical id of the target monster, e.g. `GreatJagras`. The intention is to allow tih cross-referencing information within the data file without i18n getting in the way
-+ `quest-id` is the canonical id of the quest, e.g. `GreatJagras1` for the difficulty 1 quest hunting Great Jagras. Like `monster-id` the intention is to have non-localized names for references
++ `monster-id` is the canonical id of the target monster, e.g. `great-jagras`. The intention is to allow tih cross-referencing information within the data file without i18n getting in the way
++ `quest-id` is the canonical id of the quest, e.g. `great-jagras-1` for the difficulty 1 quest hunting Great Jagras. Like `monster-id` the intention is to have non-localized names for references
 + `kind` is the localizable name for the quest type, such as Assigned or Investigation
 + `difficulty` is the numerical representation of the quest difficulty, i.e. `1` for a 1-star assigned quest
 + `time-limit` is the number of time cards available to the players
@@ -126,7 +124,11 @@ Gathering phase card rules have up to 3 elements:
 + `prompt` is the localizable call-to-action the players receive from this card, e.g. "Go forth with haste!"
 + `rules` are the localizable game mechanic actions, e.g. "Read card no. 17 next."
 
-### CSV
+### Behavior Decks
+
+Each monster 
+
+## CSV Export
 
 As part of the published source code, there is a .NET7-based console application to parse JSON data and write CSV files.
 
