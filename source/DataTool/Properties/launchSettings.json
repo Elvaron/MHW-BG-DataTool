@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "QuestCardLogic": {
+      "commandName": "Project",
+      "commandLineArgs": "-i ancient-forest.json"
+    }
+  }
+}
