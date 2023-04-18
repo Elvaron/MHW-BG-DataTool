@@ -84,8 +84,8 @@ Each quest book may contain the following information:
 Each quest has a number of properties:
 
 + `target` is the localizable name of the goal of the quest, usually a monster name
-+ `monster-id` is the canonical id of the target monster, e.g. `great-jagras`. The intention is to allow tih cross-referencing information within the data file without i18n getting in the way
-+ `quest-id` is the canonical id of the quest, e.g. `great-jagras-1` for the difficulty 1 quest hunting Great Jagras. Like `monster-id` the intention is to have non-localized names for references
++ `monster-id` is the canonical id of the target monster, e.g. `great-jagras`. The intention is to allow the cross-referencing information within the data file without i18n getting in the way
++ `quest-id` is the canonical id of the quest, e.g. `great-jagras-1` for the difficulty 1 quest hunting Great Jagras. Like `monster-id`, the intention is to have non-localized names for references.
 + `kind` is the localizable name for the quest type, such as Assigned or Investigation
 + `difficulty` is the numerical representation of the quest difficulty, i.e. `1` for a 1-star assigned quest
 + `time-limit` is the number of time cards available to the players
