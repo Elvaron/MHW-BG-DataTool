@@ -14,8 +14,8 @@ namespace Model.Model
         /// <remarks>
         /// Having a neutral root node is purely future-proofing
         /// </remarks>
-        [JsonPropertyName("quest-book")]
-        public QuestBook? QuestBook { get; set; }
+        [JsonPropertyName("quest-books")]
+        public List<QuestBook>? QuestBook { get; set; }
 
         /// <summary>
         /// Copyright info
