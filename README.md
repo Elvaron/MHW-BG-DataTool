@@ -77,7 +77,7 @@ Each quest book may contain the following information:
 + `short-name` is a localizable abbreviated name, e.g. to print on card corners
 + `version` allows for data versioning, e.g. to keep track of errata
 + `quests` contains a collection of quests as detailed below
-+ `gathering-cards` contains a collection of gathering phase cards as detailed below
++ `gathering-card-decks` contains a gathering phase card deck
 
 #### Quests
 
@@ -111,7 +111,14 @@ Each grid layout has the following components:
 + `players` is a collection of player starting locations, each with `x` and `y` ositions.
 + `terrain` is a collection of terrain nodes, each with a terrain type (known valid values being `bush|rock|pond`) on top of `x` and `y`
 
-#### Gathering Phase Cards
+#### Gathering Phase Card Decks
+
+Each card deck consists of:
+
++ `monster-id` is the canonical id of the target monster, e.g. `great-jagras`.
++ `gathering-cards` is a collection of gathering cards as detailed below.
+
+##### Gathering Phase Cards
 
 Gathering phase cards contain the following components:
 
