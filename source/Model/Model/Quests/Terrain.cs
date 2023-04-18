@@ -1,12 +1,16 @@
 ﻿using System.Text.Json.Serialization;
 
-namespace Model.Model
+namespace Model.Model.Quests
 {
-    /// <summary>
-    /// Position and orientation data for monster starting position
-    /// </summary>
-    public class MonsterPlacement
+    public class Terrain
     {
+        /// <summary>
+        /// Terrain type
+        /// </summary>
+        /// <value>bush|rock|pond</value>
+        [JsonPropertyName("type")]
+        public string? Type { get; set; }
+
         /// <summary>
         /// X Position on the grid, 1 = leftmost column
         /// </summary>
@@ -18,12 +22,5 @@ namespace Model.Model
         /// </summary>
         [JsonPropertyName("y")]
         public int? Y { get; set; }
-
-        /// <summary>
-        /// Monster facing using compass directions
-        /// 0 = North, 1 = North East, etc.
-        /// </summary>
-        [JsonPropertyName("facing")]
-        public int? Facing { get; set; }
     }
 }

@@ -1,7 +1,7 @@
 ﻿using System.Text.Json.Serialization;
 using Model.Utility;
 
-namespace Model.Model
+namespace Model.Model.Quests
 {
     /// <summary>
     /// Representation of a single published quest book
@@ -14,13 +14,13 @@ namespace Model.Model
         /// <summary>
         /// Human-friendly title
         /// </summary>
-        [JsonPropertyName("title")]
+        [JsonPropertyName("name")]
         public i18nString? Title { get; set; }
 
         /// <summary>
         /// Abbreviated title to be used in small-print
         /// </summary>
-        [JsonPropertyName("short-title")]
+        [JsonPropertyName("short-name")]
         public i18nString? ShortTitle { get; set; }
 
         /// <summary>

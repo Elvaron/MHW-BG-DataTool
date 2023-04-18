@@ -1,7 +1,7 @@
 ﻿using Model.Utility;
 using System.Text.Json.Serialization;
 
-namespace Model.Model
+namespace Model.Model.Quests
 {
     /// <summary>
     /// Represents a single quest as published in a quest book
@@ -9,28 +9,28 @@ namespace Model.Model
     public class Quest
     {
         /// <summary>
-        /// Which monster will be fought?
-        /// </summary>
-        [JsonPropertyName("target")]
-        public i18nString? Target { get; set; }
-
-        /// <summary>
-        /// Monster ID
+        /// Canonical Monster ID
         /// </summary>
         [JsonPropertyName("monster-id")]
         public string? MonsterId { get; set; }
 
         /// <summary>
-        /// Quest ID
+        /// Canonical Quest ID
         /// </summary>
         [JsonPropertyName("quest-id")]
         public string? QuestId { get; set; }
 
         /// <summary>
+        /// Quest name, usually the name of the monster to be fought
+        /// </summary>
+        [JsonPropertyName("quest-name")]
+        public i18nString? QuestName { get; set; }
+
+        /// <summary>
         /// What kind of quest is it?
         /// </summary>
-        [JsonPropertyName("kind")]
-        public i18nString? Kind { get; set; }
+        [JsonPropertyName("quest-category")]
+        public i18nString? Category { get; set; }
 
         /// <summary>
         /// What is the numeric difficulty?
@@ -48,7 +48,7 @@ namespace Model.Model
         /// What Scoutfly level is required?
         /// </summary>
         [JsonPropertyName("scoutfly-level")]
-        public string? ScoutflyLevel { get; set; }
+        public ScoutflyLevel? ScoutflyLevel { get; set; }
 
         /// <summary>
         /// Which quest cards form the starting point(s) for attempts at this quest?

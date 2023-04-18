@@ -1,6 +1,6 @@
 ﻿using System.Text.Json.Serialization;
 
-namespace Model.Model
+namespace Model.Model.Quests
 {
     /// <summary>
     /// Represents a board game grid layout
@@ -10,8 +10,8 @@ namespace Model.Model
         /// <summary>
         /// Monster starting position
         /// </summary>
-        [JsonPropertyName("monster")]
-        public MonsterPlacement? Monster { get; set; }
+        [JsonPropertyName("monsters")]
+        public List<MonsterPlacement>? Monster { get; set; }
 
         /// <summary>
         /// Player starting positions

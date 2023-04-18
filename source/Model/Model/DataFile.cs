@@ -1,5 +1,7 @@
-﻿using Model.Utility;
+﻿using Model.Model.Quests;
+using Model.Utility;
 using System.Text.Json.Serialization;
+using Model.Model.Behavior;
 
 namespace Model.Model
 {
@@ -28,5 +30,11 @@ namespace Model.Model
         /// </summary>
         [JsonPropertyName("glossary")]
         public Glossary? Glossary { get; set; }
+
+        /// <summary>
+        /// Monster behavior decks
+        /// </summary>
+        [JsonPropertyName("behavior-decks")]
+        public List<BehaviorDeck>? BehaviorDecks { get; set; }
     }
 }

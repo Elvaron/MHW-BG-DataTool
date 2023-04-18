@@ -1,7 +1,7 @@
 ﻿using Model.Utility;
 using System.Text.Json.Serialization;
 
-namespace Model.Model
+namespace Model.Model.Quests
 {
     /// <summary>
     /// Represents a single rule box on a card

@@ -1,6 +1,6 @@
 ﻿using System.Text.Json.Serialization;
 
-namespace Model.Model
+namespace Model.Model.Quests
 {
     /// <summary>
     /// Starting point nodes for players
