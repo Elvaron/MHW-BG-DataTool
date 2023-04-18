@@ -15,6 +15,18 @@ namespace Model.Model
         public i18nString? Target { get; set; }
 
         /// <summary>
+        /// Monster ID
+        /// </summary>
+        [JsonPropertyName("monster-id")]
+        public string? MonsterId { get; set; }
+
+        /// <summary>
+        /// Quest ID
+        /// </summary>
+        [JsonPropertyName("quest-id")]
+        public string? QuestId { get; set; }
+
+        /// <summary>
         /// What kind of quest is it?
         /// </summary>
         [JsonPropertyName("kind")]
@@ -29,13 +41,13 @@ namespace Model.Model
         /// <summary>
         /// How many time cards to pull?
         /// </summary>
-        [JsonPropertyName("time limit")]
+        [JsonPropertyName("time-limit")]
         public int? TimeLimit { get; set; }
 
         /// <summary>
         /// What Scoutfly level is required?
         /// </summary>
-        [JsonPropertyName("scoutfly level")]
+        [JsonPropertyName("scoutfly-level")]
         public string? ScoutflyLevel { get; set; }
 
         /// <summary>

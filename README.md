@@ -54,7 +54,77 @@ The root node of each data file contains a number of (optional) children:
 + A list of quest books described in the data file, with quest details and gathering phase cards.
 + A list of behavior cards.
 
+
+```json
+{
+	"copyright": [ { "language": "en-US", "text": "© CAPCOM" } ],
+	"glossary": null,
+	"quest-book": [ ],
+	"behavior-decks": [ ]
+```
+
 Further structural data may be suggested by the community in due time.
+
+#### Glossary
+
+Current glossary terms:
+
++ `rule-box-concat` to display the *or* between alternatives on gathering phase cards
+
+#### Quest Book
+
+Each quest book may contain the following information:
+
++ `title` is the localizable name of the quest book
++ `short-title` is a localizable abbreviated name, e.g. to print on card corners
++ `version` allows for data versioning, e.g. to keep track of errata
++ `quests` contains a collection of quests as detailed below
++ `gathering-cards` contains a collection of gathering phase cards as detailed below
+
+#### Quests
+
+Each quest has a number of properties:
+
++ `target` is the localizable name of the goal of the quest, usually a monster name
++ `monster-id` is the canonical id of the target monster, e.g. `GreatJagras`. The intention is to allow tih cross-referencing information within the data file without i18n getting in the way
++ `quest-id` is the canonical id of the quest, e.g. `GreatJagras1` for the difficulty 1 quest hunting Great Jagras. Like `monster-id` the intention is to have non-localized names for references
++ `kind` is the localizable name for the quest type, such as Assigned or Investigation
++ `difficulty` is the numerical representation of the quest difficulty, i.e. `1` for a 1-star assigned quest
++ `time-limit` is the number of time cards available to the players
++ `scoutfly-level` is the required Scoutfly Level as a string to allow for ranges (e.g. `"3-7"`)
++ `starting` contains a collection of gathering phase cards, in sequential order, for successive attempts at the quest to start reading at
++ `layout` contains a data representation of the map layout for the quest
+
+##### Layout
+
+Maps are always 6x6 grids, with columns and rows counted from 1 to 6.
+
+Each grid layout has the following components:
+
++ `monster` to describe the initial monster position, with the column (1 through 6) as `x`, the row (1 through 6) as `y` and the initial orientation as `facing` counting clock-wise in 45° intervals starting at North.
+⋅⋅* So we get the mappings `1 = N, 2 = NE, 3 = E, 4 = SE, 5 = S, 6 = SW, 7 = W, 8 = NW`
++ `players` is a collection of player starting locations, each with `x` and `y` just like monster starting positions.
++ `terrain` is a collection of terrain nodes, each with a terrain type (known valid values being `bush|rock|pond`) on top of `x` and `y`
+
+#### Gathering Phase Cards
+
+Gathering phase cards contain the following components:
+
++ `number` is the number printed on the top of the card
++ `page` is the page number from the quest book for reference
++ `title` is a localizable name on the top, if applicable. Examples would be "Assigned Quest Starting Point"
++ `title-rule` is the localizable instructional part of the title, if applicable, e.g. getting a potion for starting at this card.
++ `flavor` is the localizable flavor text that tells the story.
++ `consequence` is the localizable reward and/or penalty that some cards have *in addition* to the rules to follow/select.
++ `rules` is a collection of rules to follow/select after reading the card.
+
+##### Gathering Phase Card Rules
+
+Gathering phase card rules have up to 3 elements:
+
++ `condition` is a localizable limitation on a rule's selectability, e.g. "The players may only select this option if they have X in their inventory."
++ `prompt` is the localizable call-to-action the players receive from this card, e.g. "Go forth with haste!"
++ `rules` are the localizable game mechanic actions, e.g. "Read card no. 17 next."
 
 ### CSV
 

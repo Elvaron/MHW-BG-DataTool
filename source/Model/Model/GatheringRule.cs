@@ -9,7 +9,7 @@ namespace Model.Model
     /// <remarks>
     /// In the print version, these are usually back-lit in green
     /// </remarks>
-    public class Rule
+    public class GatheringRule
     {
         /// <summary>
         /// The story-like instruction for the players

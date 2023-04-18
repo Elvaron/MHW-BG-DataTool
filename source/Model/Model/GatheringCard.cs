@@ -6,7 +6,7 @@ namespace Model.Model
     /// <summary>
     /// Represents a single Gathering Phase card
     /// </summary>
-    public class Card
+    public class GatheringCard
     {
         /// <summary>
         /// The number written on top of the card
@@ -51,6 +51,6 @@ namespace Model.Model
         /// Rules to chose from
         /// </summary>
         [JsonPropertyName("rules")]
-        public List<Rule>? Rules { get; set; }
+        public List<GatheringRule>? Rules { get; set; }
     }
 }

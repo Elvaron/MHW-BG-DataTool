@@ -39,9 +39,9 @@ namespace Model.Model
         public List<Quest>? Quests { get; set; }
 
         /// <summary>
-        /// Individual story cards
+        /// Individual gathering phase cards
         /// </summary>
-        [JsonPropertyName("cards")]
-        public List<Card>? Cards { get; set; }
+        [JsonPropertyName("gathering-cards")]
+        public List<GatheringCard>? Cards { get; set; }
     }
 }

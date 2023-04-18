@@ -11,13 +11,13 @@ namespace Model.Model
         /// Monster starting position
         /// </summary>
         [JsonPropertyName("monster")]
-        public Monster? Monster { get; set; }
+        public MonsterPlacement? Monster { get; set; }
 
         /// <summary>
         /// Player starting positions
         /// </summary>
         [JsonPropertyName("players")]
-        public List<Player>? Players { get; set; }
+        public List<PlayerPlacement>? Players { get; set; }
 
         /// <summary>
         /// Terrain nodes

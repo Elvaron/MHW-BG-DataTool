@@ -3,9 +3,9 @@
 namespace Model.Model
 {
     /// <summary>
-    /// Starting point nodes for players
+    /// Position and orientation data for monster starting position
     /// </summary>
-    public class Player
+    public class MonsterPlacement
     {
         /// <summary>
         /// X Position on the grid, 1 = leftmost column
@@ -18,5 +18,12 @@ namespace Model.Model
         /// </summary>
         [JsonPropertyName("y")]
         public int? Y { get; set; }
+
+        /// <summary>
+        /// Monster facing using compass directions
+        /// 0 = North, 1 = North East, etc.
+        /// </summary>
+        [JsonPropertyName("facing")]
+        public int? Facing { get; set; }
     }
 }
