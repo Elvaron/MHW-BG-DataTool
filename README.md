@@ -102,7 +102,7 @@ Maps are always 6x6 grids, with columns and rows counted from 1 to 6.
 Each grid layout has the following components:
 
 + `monster` to describe the initial monster position, with the column (1 through 6) as `x`, the row (1 through 6) as `y` and the initial orientation as `facing` counting clock-wise in 45° intervals starting at North.
-⋅⋅* So we get the mappings `1 = N, 2 = NE, 3 = E, 4 = SE, 5 = S, 6 = SW, 7 = W, 8 = NW`
+    + So we get the mappings `1 = N, 2 = NE, 3 = E, 4 = SE, 5 = S, 6 = SW, 7 = W, 8 = NW`
 + `players` is a collection of player starting locations, each with `x` and `y` just like monster starting positions.
 + `terrain` is a collection of terrain nodes, each with a terrain type (known valid values being `bush|rock|pond`) on top of `x` and `y`
 
