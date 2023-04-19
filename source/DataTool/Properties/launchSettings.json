@@ -2,7 +2,7 @@
   "profiles": {
     "QuestCardLogic": {
       "commandName": "Project",
-      "commandLineArgs": "-i ancient-forest.json"
+      "commandLineArgs": "md-import -i E:\\P\\data\\g-jagr.md"
     }
   }
 }

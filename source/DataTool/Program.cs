@@ -8,7 +8,10 @@ namespace DataTool
     {
         static int Main(string[] args)
         {
-            return Parser.Default.ParseArguments<ExportCSV>(args).MapResult(CSV.WriteCSV, _ => 1);
+            return Parser.Default.ParseArguments<ExportCSV, ImportMD>(args).MapResult(
+                (ExportCSV options) => CSV.WriteCSV(options),
+                (ImportMD options) => MD.ReadMD(options),
+                _ => 1);
         }
     }
 }

@@ -18,11 +18,11 @@ namespace DataTool.IO
                 options.Separator = "\t";
             }
 
-            DataFile? dataFile = JSON.ReadDataFile(options.DataFile);
+            DataFile? dataFile = JSON.ReadDataFile(options.InputFile);
 
             if (dataFile == null)
             {
-                Console.WriteLine($"Failed to read data file: {options.DataFile}");
+                Console.WriteLine($"Failed to read data file: {options.InputFile}");
 
                 return 1;
             }

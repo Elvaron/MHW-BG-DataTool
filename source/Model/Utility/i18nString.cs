@@ -8,6 +8,15 @@ namespace Model.Utility
     [DebuggerDisplay("{Default}")]
     public class i18nString : List<i18nText>
     {
+        public i18nString() { }
+
+        public i18nString(string text, string language = "en-US")
+        {
+            Add(new i18nText { Language = language, Text = text });
+        }
+
+        public static implicit operator i18nString(string s) => new i18nString(s);
+
         /// <summary>
         /// Default text
         /// </summary>
