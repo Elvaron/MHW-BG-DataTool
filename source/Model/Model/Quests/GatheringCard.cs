@@ -44,7 +44,7 @@ namespace Model.Model.Quests
         /// <summary>
         /// Potential consequences (rewards and/or penalties) for this card no matter which rule is chosen
         /// </summary>
-        [JsonPropertyName("consequence")]
+        [JsonPropertyName("consequences")]
         public List<i18nString>? Consequences { get; set; }
 
         /// <summary>

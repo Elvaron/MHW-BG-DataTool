@@ -158,12 +158,12 @@ Each behavior card is represented by the following information:
 + `name` is the localizable name of the behavior card
 + `index` is the card's index, e.g. `145/148`
 + `target` can be a value of `furthest|closest` to indicate who the monster will target
-+ `part` is the card's monster body part as a value of `head|body|tail|legs|claws|wings|none`
++ `part` is the card's monster body part as a value of `head|body|tail|legs|claws|wings|null`
 + `actions` is a collection of actions as defined below
 + `activation` contains the activation information for hunters after the monster acts:
     + `hunters` is the number of hunter turns before the monster's next turn
     + `cards` is the number of attack cards each hunter may play in a given turn
-+ `windup-activation` contains the activation information (see above for data contents) before the monster acts (wind-up, Iceborne feature)
++ `wind-up-activation` contains the activation information (see above for data contents) before the monster acts (wind-up, Iceborne feature)
 
 ##### Actions
 

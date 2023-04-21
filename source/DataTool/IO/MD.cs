@@ -103,6 +103,7 @@ namespace DataTool.IO
             var section = 0;
 
             var titles = new List<string>();
+            var consequences = new List<string>();
             var rules = new List<string>();
 
             // Separate lines into 3 segments - number, title and rules
@@ -137,10 +138,18 @@ namespace DataTool.IO
                     break;
                 }
 
+                if (line.Contains("*****"))
+                {
+                    // Move from title section to consequences section
+                    section = 2;
+
+                    continue;
+                }
+
                 if (line.Contains("===="))
                 {
-                    // Move from title section to rules section
-                    section++;
+                    // Move from title/consequences section to rules section
+                    section = 3;
 
                     continue;
                 }
@@ -158,6 +167,17 @@ namespace DataTool.IO
 
                 if (section == 2)
                 {
+                    // Don't add empty text
+                    if (!string.IsNullOrEmpty(line))
+                    {
+                        consequences.Add(line);
+                    }
+
+                    continue;
+                }
+
+                if (section == 3)
+                {
                     // Add text, empty or not
                     rules.Add(line);
                 }
@@ -174,26 +194,27 @@ namespace DataTool.IO
 
             card.Page = 1;
 
-            if (titles.Count > 0)
+            var cardFlavor = "";
+
+            foreach (var flavor in titles)
             {
-                card.Flavor = titles[0].Trim();
-                titles.RemoveAt(0);
+                if (!string.IsNullOrEmpty(cardFlavor))
+                {
+                    cardFlavor = cardFlavor + " ";
+                }
+
+                cardFlavor = cardFlavor + flavor.Trim();
             }
 
-            while (titles.Count > 0)
+            card.Flavor = cardFlavor;
+
+            foreach (var consequence in consequences)
             {
                 if (card.Consequences == null)
                 {
                     card.Consequences = new List<i18nString>();
                 }
-
-                card.Consequences.Add(titles[0].Trim());
-                titles.RemoveAt(0);
-            }
-
-            while (rules.Count > 0 && string.IsNullOrEmpty(rules.Last()))
-            {
-                rules.RemoveAt(rules.Count - 1);
+                card.Consequences.Add(new i18nString(consequence));
             }
 
             var rule = new GatheringRule();
