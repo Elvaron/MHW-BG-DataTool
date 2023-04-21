@@ -41,6 +41,15 @@ namespace Model.Model.Behavior
         public HunterActivation? Activation { get; set; }
 
         /// <summary>
+        /// Wind-up activation information
+        /// </summary>
+        /// <remarks>
+        /// Iceborne feature
+        /// </remarks>
+        [JsonPropertyName("wind-up-activation")]
+        public HunterActivation? WindUpActivation { get; set; }
+
+        /// <summary>
         /// Collection of monster actions
         /// </summary>
         [JsonPropertyName("actions")]

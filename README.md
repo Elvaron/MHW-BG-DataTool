@@ -127,8 +127,9 @@ Gathering phase cards contain the following components:
 + `title` is a localizable name on the top, if applicable. Examples would be "Assigned Quest Starting Point"
 + `title-rule` is the localizable instructional part of the title, if applicable, e.g. getting a potion for starting at this card.
 + `flavor` is the localizable flavor text that tells the story.
-+ `consequence` is the localizable reward and/or penalty that some cards have *in addition* to the rules to follow/select.
++ `consequences` is a collection of localizable rewards and/or penalties that some cards have *in addition* to the rules to follow/select.
 + `rules` is a collection of rules to follow/select after reading the card.
++ `track-deck-info` specifies whether this card should include the track deck info for the monster, i.e. which behavior card to put it based on Scoutfly Level. In other words, this marks the "final" cards in the gathering phase deck.
 
 ##### Gathering Phase Card Rules
 
@@ -159,9 +160,10 @@ Each behavior card is represented by the following information:
 + `target` can be a value of `furthest|closest` to indicate who the monster will target
 + `part` is the card's monster body part as a value of `head|body|tail|legs|claws|wings|none`
 + `actions` is a collection of actions as defined below
-+ `activation` contains the activation information:
++ `activation` contains the activation information for hunters after the monster acts:
     + `hunters` is the number of hunter turns before the monster's next turn
     + `cards` is the number of attack cards each hunter may play in a given turn
++ `windup-activation` contains the activation information (see above for data contents) before the monster acts (wind-up, Iceborne feature)
 
 ##### Actions
 

@@ -168,12 +168,28 @@ namespace DataTool.IO
             {
                 card.Title = titles[0].Trim();
                 card.TitleRule = titles[1].Trim();
+                titles.RemoveAt(0);
+                titles.RemoveAt(0);
             }
 
             card.Page = 1;
 
-            // Last line above separator is flavor
-            card.Flavor = titles.Last().Trim();
+            if (titles.Count > 0)
+            {
+                card.Flavor = titles[0].Trim();
+                titles.RemoveAt(0);
+            }
+
+            while (titles.Count > 0)
+            {
+                if (card.Consequences == null)
+                {
+                    card.Consequences = new List<i18nString>();
+                }
+
+                card.Consequences.Add(titles[0].Trim());
+                titles.RemoveAt(0);
+            }
 
             while (rules.Count > 0 && string.IsNullOrEmpty(rules.Last()))
             {
@@ -190,6 +206,12 @@ namespace DataTool.IO
             for (int ruleLineIndex = 0; ruleLineIndex < rules.Count; ruleLineIndex++)
             {
                 var ruleLine = rules[ruleLineIndex];
+
+                if (ruleLine.Contains("++++"))
+                {
+                    card.TrackDeckInfo = true;
+                    continue;
+                }
 
                 // Does it have a condition?
                 if (ruleLineIndex + 1 < rules.Count && ConditionSplitRegex.Value.IsMatch(rules[ruleLineIndex + 1]))

@@ -45,12 +45,18 @@ namespace Model.Model.Quests
         /// Potential consequences (rewards and/or penalties) for this card no matter which rule is chosen
         /// </summary>
         [JsonPropertyName("consequence")]
-        public i18nString? Consequence { get; set; }
+        public List<i18nString>? Consequences { get; set; }
 
         /// <summary>
         /// Rules to chose from
         /// </summary>
         [JsonPropertyName("rules")]
         public List<GatheringRule>? Rules { get; set; }
+
+        /// <summary>
+        /// Whether to print the tracking deck info
+        /// </summary>
+        [JsonPropertyName("track-deck-info")]
+        public bool? TrackDeckInfo { get; set; }
     }
 }
