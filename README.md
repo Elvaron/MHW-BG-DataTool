@@ -89,11 +89,39 @@ Each quest has a number of properties:
 + `quest-name` is the localizable name of the goal of the quest, usually a monster name, but it could potentially be anything.
 + `difficulty` is the numerical representation of the quest difficulty, i.e. `1` for a 1-star assigned quest
 + `time-limit` is the number of time cards available to the players
++ `physiology` contains the physiology card for the monster and difficulty
 + `scoutfly-level` is the Scoutfly Level for behavior deck construction, containing
     + `min` numeric value
     + `max` numeric value
 + `starting` contains a collection of gathering phase cards, in sequential order, for successive attempts at the quest to start reading at
 + `layout` contains a data representation of the map layout for the quest
+
+##### Physiology
+
+Each physiology card has the following properties:
+
++ `monster-type` is the localizable name for the monster type, printed in smaller font above the monster's name
++ `hitpoints` is the number of hit points the monster has
++ `resistance` contains the elemental and status resistances the hunters need to overcome. `1` for 1 star, `2` for 2 stars. Immunity is written as `-1`
+    + `fire`, `water`, `thunder`, `ice` and `dragon` are the elemental resistance properties
+    + `paralysis`, `poison`, `sleep`, `blastblight`, `stun` are the status resistance properties
++ `special` contains the special rules associated with a monster's physiology
+    + `name` is the localizable name for its special ability
+    + `rules` is the localizable set of rules for this special ability.
++ `parts` contains a collection of monster body parts
+    + `part` specifies the specific body part it refers to as a value of `head|body|tail|legs|claws|wings|null`
+    + `arc` specifies which targeting arcs are active, containing
+        + `front` as `true|false`
+        + `back` as `true|false`
+        + `left` as `true|false`
+        + `right` as `true|false`
+    + `armor` is the armor value of that body part
+    + `break` is the break value of that body part
+    + `rules` is the localizable set of rules to follow when that body part is broken
++ `rewards` is a collection representing the rewards table, with each having
+    + `number` being the roll number needed
+    + `item-reward` being the localizable name of the item dropped
+    + `break-reward` being the localizable description of what body part to break to get how many of this item, if any
 
 ##### Layout
 
