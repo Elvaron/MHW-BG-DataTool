@@ -185,8 +185,9 @@ Each behavior card is represented by the following information:
 
 + `name` is the localizable name of the behavior card
 + `index` is the card's index, e.g. `145/148`
-+ `target` can be a value of `furthest|closest` to indicate who the monster will target
++ `target` can be a value of `far|close` to indicate who the monster will target
 + `part` is the card's monster body part as a value of `head|body|tail|legs|claws|wings|null`
++ `special-type` is the card's special type referenced by other texts, e.g. `supernova|nergigante-dive`
 + `actions` is a collection of actions as defined below
 + `activation` contains the activation information for hunters after the monster acts:
     + `hunters` is the number of hunter turns before the monster's next turn
