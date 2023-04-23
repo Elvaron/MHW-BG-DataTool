@@ -214,7 +214,7 @@ Each action contains:
 + `dodge` is the dodge value, i.e. how difficult the attack is for the hunters to dodge.
 + `damage` is the amount of damage dealt by the attack
 + `element` is one of `physical|fire|water|ice|thunder|dragon`
-+ `status-ailment` is one of `stun|poison|sleep|paralysis|blastblight|null`
++ `status-ailment` is one of `stun|poison|sleep|paralysis|blast|null`
 
 #### Special Behavior Cards
 
