@@ -50,7 +50,6 @@ The root node of each data file contains a number of (optional) children:
 + A glossary of commonly used words, for example the *or* written between different choices on a gathering phase card.
 + A list of monsters described in the data file
 + A list of quest books described in the data file, with quest details and gathering phase cards.
-+ A list of monster behavior decks.
 + A list of time card decks
 
 ```json
@@ -70,6 +69,10 @@ Current glossary terms:
 
 + `rule-box-concat` to display the *or* between alternatives on gathering phase cards
 + `abbreviation-page` to display the *P.* to refer to a book page
++ `scoutfly-level` to localize the term *Scoutfly Level*, i.e. the ranges for the track behavior cards
++ `starting-points` to localize the term *Starting Points* referring to the sequential attempt-wise starting gathering phase cards for a quest
++ `time-limit` to localize the term *Time Limit*, i.e. the amount of time cards available for this quest
++ `time cards` to localize the term *time cards*, i.e. the counting term behind the printed number of time cards available as the time limit
 
 ### Quest Book
 
