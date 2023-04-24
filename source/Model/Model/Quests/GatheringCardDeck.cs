@@ -1,10 +1,12 @@
-﻿using System.Text.Json.Serialization;
+﻿using System.Diagnostics;
+using System.Text.Json.Serialization;
 
 namespace Model.Model.Quests
 {
     /// <summary>
     /// Gathering card deck for a specific monster
     /// </summary>
+    [DebuggerDisplay("{MonsterId,nq}")]
     public class GatheringCardDeck
     {
         /// <summary>

@@ -1,4 +1,5 @@
 ﻿using Model.Utility;
+using System.Diagnostics;
 using System.Text.Json.Serialization;
 
 namespace Model.Model.Quests
@@ -6,6 +7,7 @@ namespace Model.Model.Quests
     /// <summary>
     /// Represents a single Gathering Phase card
     /// </summary>
+    [DebuggerDisplay("{Number,nq}")]
     public class GatheringCard
     {
         /// <summary>
@@ -45,7 +47,7 @@ namespace Model.Model.Quests
         /// Potential consequences (rewards and/or penalties) for this card no matter which rule is chosen
         /// </summary>
         [JsonPropertyName("consequences")]
-        public List<i18nString>? Consequences { get; set; }
+        public i18nString? Consequences { get; set; }
 
         /// <summary>
         /// Rules to chose from

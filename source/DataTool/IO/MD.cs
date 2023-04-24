@@ -212,9 +212,9 @@ namespace DataTool.IO
             {
                 if (card.Consequences == null)
                 {
-                    card.Consequences = new List<i18nString>();
+                    card.Consequences = new i18nString();
                 }
-                card.Consequences.Add(new i18nString(consequence));
+                card.Consequences.Add(consequence);
             }
 
             var rule = new GatheringRule();

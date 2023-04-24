@@ -1,4 +1,5 @@
 ﻿using Model.Utility;
+using System.Diagnostics;
 using System.Text.Json.Serialization;
 
 namespace Model.Model.Quests
@@ -6,6 +7,7 @@ namespace Model.Model.Quests
     /// <summary>
     /// Represents a single quest as published in a quest book
     /// </summary>
+    [DebuggerDisplay("{QuestId,nq}")]
     public class Quest
     {
         /// <summary>

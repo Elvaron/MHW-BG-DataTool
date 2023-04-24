@@ -1,7 +1,9 @@
-﻿using System.Text.Json.Serialization;
+﻿using System.Diagnostics;
+using System.Text.Json.Serialization;
 
 namespace Model.Model.Quests
 {
+    [DebuggerDisplay("{DebuggerDisplay,nq}")]
     public class Terrain
     {
         /// <summary>
@@ -22,5 +24,11 @@ namespace Model.Model.Quests
         /// </summary>
         [JsonPropertyName("y")]
         public int? Y { get; set; }
+
+        [JsonIgnore]
+        private string DebuggerDisplay
+        {
+            get { return string.Format("{0} at {1}|{2}", Type, X, Y); }
+        }
     }
 }

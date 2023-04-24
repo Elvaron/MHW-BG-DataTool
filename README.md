@@ -51,14 +51,15 @@ The root node of each data file contains a number of (optional) children:
 + A list of monsters described in the data file
 + A list of quest books described in the data file, with quest details and gathering phase cards.
 + A list of monster behavior decks.
-
++ A list of time card decks
 
 ```json
 {
 	"copyright": [ { "language": "en-US", "text": "© CAPCOM" } ],
 	"glossary": null,
 	"quest-book": [ ],
-	"behavior-decks": [ ]
+	"behavior-decks": [ ],
+	"time-card-decks": { "common":[], "decks":[] }
 ```
 
 Further structural data may be suggested by the community in due time.
@@ -77,7 +78,7 @@ Each quest book may contain the following information:
 + `short-name` is a localizable abbreviated name, e.g. to print on card corners
 + `version` allows for data versioning, e.g. to keep track of errata
 + `quests` contains a collection of quests as detailed below
-+ `gathering-card-decks` contains a gathering phase card deck
++ `gathering-card-decks` contains gathering phase card decks
 
 #### Quests
 
@@ -242,6 +243,54 @@ Directly associating each with the given condition avoids a sequence issue.
 	"equal-or-more-maximum": { /* Normal behavior card structure */ }
 }
 ```
+
+### Time Card Decks
+
+Time card decks contain the blue and red time cards included with each core set and expansion.
+In play, you would only use one blue deck due to duplicates.
+
+The time card decks node contains a `common-rule-sets` array since a lot of cards share the same text on the top.
+There's really only one element in this array at this point, but with Icebore that might be different (we will see and adapt):
+```json
+{
+    "id":"world",
+    "rules":[
+        {
+            "language":"en-US",
+            "text":"Flip your hunter token face down."
+        },
+        {
+            "language":"en-US",
+            "text":"Discard 1 attack card from the rightmost slot of your stamina board."
+        },
+        {
+            "language":"en-US",
+            "text":"Discard any number of attack cards from your hand."
+        },
+        {
+            "language":"en-US",
+            "text":"Draw attack cards until there are 5 cards in your hand."
+        }
+    ]
+}
+```
+
+The time card decks node also contains a `decks` array, with a separate deck for each box set, containing
++ `name` as the localizable name of the expansion (e.g. `Ancient Forest`)
++ `short-name` as the localizable abbreviated name of the expansion for card bottoms (e.g. `MHW:AF`)
++ `card-limit` is the number of cards in that expansion card bottoms (i.e. `632` to get `MHW:AF 222/632`)
++ `common` references the common rule set (see above) to use
++ `cards` is a collection of time cards
+
+#### Time Cards
+
+Each time card contains the following information:
++ `type` being a value of `blue|red` to indicate whether it is part of a starting time deck or added during the hunt
++ `name` is the localizable name of the card
++ `rules` is a collection of localizable rule texts.[^2] Multiple 
++ `instances` is a collection of card id numbers for this card. Since the same card may appear multiple times (mostly in blue decks thus far), this encodes both the number of copies and their individual card numbers.
+
+[^2]: Technically, all localizable texts are collections, since the data structure being an array of tuples `<language,text>` is not uniquely keyed to the language. How multiple texts for the same language are interpreted is up to the program that uses this JSON structure. You might merge them into continuous text or use the plurality as metadata to decide between different layouts.
 
 ## CSV Export
 

@@ -2,7 +2,7 @@
   "profiles": {
     "QuestCardLogic": {
       "commandName": "Project",
-      "commandLineArgs": "md-import -i E:\\P\\data\\g-jagr.md"
+      "commandLineArgs": "csv-export -i E:\\P\\MHW-BG-QuestCards\\source\\data\\all.json"
     }
   }
 }

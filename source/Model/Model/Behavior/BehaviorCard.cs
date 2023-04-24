@@ -1,4 +1,5 @@
-﻿using System.Text.Json.Serialization;
+﻿using System.Diagnostics;
+using System.Text.Json.Serialization;
 using Model.Utility;
 
 namespace Model.Model.Behavior
@@ -6,6 +7,7 @@ namespace Model.Model.Behavior
     /// <summary>
     /// A behavior card describes a monster's turn
     /// </summary>
+    [DebuggerDisplay("{DebuggerDisplay,nq}")]
     public class BehaviorCard
     {
         /// <summary>
@@ -54,5 +56,11 @@ namespace Model.Model.Behavior
         /// </summary>
         [JsonPropertyName("actions")]
         public List<MonsterAction>? Actions { get; set; }
+
+        [JsonIgnore]
+        private string DebuggerDisplay
+        {
+            get { return string.Format("{0}: {1}", Index?.Default, Name?.Default); }
+        }
     }
 }

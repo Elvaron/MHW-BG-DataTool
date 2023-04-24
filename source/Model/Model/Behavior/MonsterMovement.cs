@@ -1,10 +1,12 @@
-﻿using System.Text.Json.Serialization;
+﻿using System.Diagnostics;
+using System.Text.Json.Serialization;
 
 namespace Model.Model.Behavior
 {
     /// <summary>
     /// Represents a monster's movement direction/speed
     /// </summary>
+    [DebuggerDisplay("{DebuggerDisplay,nq}")]
     public class MonsterMovement
     {
         /// <summary>
@@ -30,5 +32,11 @@ namespace Model.Model.Behavior
         /// </summary>
         [JsonPropertyName("right")]
         public int? Right { get; set; } = 0;
+
+        [JsonIgnore]
+        private string DebuggerDisplay
+        {
+            get { return string.Format("F{0}R{1}B{2}L{3}", Front, Right, Back, Left); }
+        }
     }
 }

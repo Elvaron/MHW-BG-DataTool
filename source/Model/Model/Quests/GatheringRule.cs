@@ -1,4 +1,5 @@
 ﻿using Model.Utility;
+using System.Diagnostics;
 using System.Text.Json.Serialization;
 
 namespace Model.Model.Quests
@@ -9,6 +10,7 @@ namespace Model.Model.Quests
     /// <remarks>
     /// In the print version, these are usually back-lit in green
     /// </remarks>
+    [DebuggerDisplay("{DebuggerDisplay,nq}")]
     public class GatheringRule
     {
         /// <summary>
@@ -28,5 +30,11 @@ namespace Model.Model.Quests
         /// </summary>
         [JsonPropertyName("rules")]
         public i18nString? Rules { get; set; }
+
+        [JsonIgnore]
+        private string DebuggerDisplay
+        {
+            get { return Prompt?.Default ?? ""; }
+        }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System.Text.Json.Serialization;
+﻿using System.Diagnostics;
+using System.Text.Json.Serialization;
 using Model.Utility;
 
 namespace Model.Model.Quests
@@ -9,6 +10,7 @@ namespace Model.Model.Quests
     /// <remarks>
     /// Quest books can be published as a stand-alone document or as part of an expansion's rulebook.
     /// </remarks>
+    [DebuggerDisplay("{Title}")]
     public class QuestBook
     {
         /// <summary>

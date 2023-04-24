@@ -17,6 +17,11 @@ namespace Model.Utility
 
         public static implicit operator i18nString(string s) => new i18nString(s);
 
+        public void Add(string text, string language = "en-US")
+        {
+            Add(new i18nText { Language = language, Text = text });
+        }
+
         /// <summary>
         /// Default text
         /// </summary>

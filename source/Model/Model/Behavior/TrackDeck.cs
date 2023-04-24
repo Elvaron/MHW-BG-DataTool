@@ -1,4 +1,5 @@
-﻿using System.Text.Json.Serialization;
+﻿using System.Diagnostics;
+using System.Text.Json.Serialization;
 
 namespace Model.Model.Behavior
 {
@@ -8,6 +9,7 @@ namespace Model.Model.Behavior
     /// <remarks>
     /// Players always add a specific behavior card to the deck if their Scoutfly track count is below or equal the minimum of the given quest's range, another one for below the maximum of the quest's range, and the last one for being equal or exceeding the maximum.
     /// </remarks>
+    [DebuggerDisplay("{DebuggerDisplay,nq}")]
     public class TrackDeck
     {
         /// <summary>
@@ -28,5 +30,10 @@ namespace Model.Model.Behavior
         [JsonPropertyName("greater-or-equal-maximum")]
         public BehaviorCard? GreaterEqualMaximum { get; set; }
 
+        [JsonIgnore]
+        private string DebuggerDisplay
+        {
+            get { return string.Format("≤:{0},][:{1},≥:{2}", LessEqualMinimum?.Index?.Default, MidRange?.Index?.Default, GreaterEqualMaximum?.Index?.Default); }
+        }
     }
 }

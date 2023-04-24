@@ -1,10 +1,12 @@
-﻿using System.Text.Json.Serialization;
+﻿using System.Diagnostics;
+using System.Text.Json.Serialization;
 
 namespace Model.Model.Behavior
 {
     /// <summary>
     /// Contains hunter activation information
     /// </summary>
+    [DebuggerDisplay("{DebuggerDisplay,nq}")]
     public class HunterActivation
     {
         /// <summary>
@@ -18,5 +20,11 @@ namespace Model.Model.Behavior
         /// </summary>
         [JsonPropertyName("cards")]
         public int? AttackCards { get; set; }
+
+        [JsonIgnore]
+        private string DebuggerDisplay
+        {
+            get { return string.Format("Turns: {0}, Cards: {1}", HunterTurns, AttackCards); }
+        }
     }
 }

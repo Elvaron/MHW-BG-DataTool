@@ -1,10 +1,12 @@
-﻿using System.Text.Json.Serialization;
+﻿using System.Diagnostics;
+using System.Text.Json.Serialization;
 
 namespace Model.Model.Quests
 {
     /// <summary>
     /// Each quest has a minimum and maximum scoutfly level. They decide which specific behavior card will be added to a monster's deck.
     /// </summary>
+    [DebuggerDisplay("{DebuggerDisplay,nq}")]
     public class ScoutflyLevel
     {
         /// <summary>
@@ -24,5 +26,11 @@ namespace Model.Model.Quests
         /// </remarks>
         [JsonPropertyName("max")]
         public int? Maximum { get; set; }
+
+        [JsonIgnore]
+        private string DebuggerDisplay
+        {
+            get { return string.Format("{0}-{1}", Minimum, Maximum); }
+        }
     }
 }

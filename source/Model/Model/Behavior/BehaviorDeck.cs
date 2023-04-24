@@ -1,10 +1,12 @@
-﻿using System.Text.Json.Serialization;
+﻿using System.Diagnostics;
+using System.Text.Json.Serialization;
 
 namespace Model.Model.Behavior
 {
     /// <summary>
     /// Represents a single monster's behavior deck
     /// </summary>
+    [DebuggerDisplay("{MonsterId,nq}")]
     public class BehaviorDeck
     {
         /// <summary>

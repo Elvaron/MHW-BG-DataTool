@@ -1,8 +1,10 @@
-﻿using System.Text.Json.Serialization;
+﻿using System.Diagnostics;
+using System.Text.Json.Serialization;
 using Model.Utility;
 
 namespace Model.Model.Behavior
 {
+    [DebuggerDisplay("{ActionType,nq}")]
     public class MonsterAction
     {
         /// <summary>

@@ -2,6 +2,7 @@
 using Model.Utility;
 using System.Text.Json.Serialization;
 using Model.Model.Behavior;
+using Model.Model.Time;
 
 namespace Model.Model
 {
@@ -36,5 +37,11 @@ namespace Model.Model
         /// </summary>
         [JsonPropertyName("behavior-decks")]
         public List<BehaviorDeck>? BehaviorDecks { get; set; }
+
+        /// <summary>
+        /// Time card deck information
+        /// </summary>
+        [JsonPropertyName("time-card-decks")]
+        public TimeCardDeckContainer? TimeCardDecks { get; set; }
     }
 }

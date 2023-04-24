@@ -1,10 +1,12 @@
-﻿using System.Text.Json.Serialization;
+﻿using System.Diagnostics;
+using System.Text.Json.Serialization;
 
 namespace Model.Model.Quests
 {
     /// <summary>
     /// Starting point nodes for players
     /// </summary>
+    [DebuggerDisplay("{DebuggerDisplay,nq}")]
     public class PlayerPlacement
     {
         /// <summary>
@@ -18,5 +20,11 @@ namespace Model.Model.Quests
         /// </summary>
         [JsonPropertyName("y")]
         public int? Y { get; set; }
+
+        [JsonIgnore]
+        private string DebuggerDisplay
+        {
+            get { return string.Format("Player at {0}|{1}", X, Y); }
+        }
     }
 }
