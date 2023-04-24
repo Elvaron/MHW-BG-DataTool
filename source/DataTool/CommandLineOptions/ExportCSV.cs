@@ -14,6 +14,9 @@ namespace DataTool.CommandLineOptions
         [Option('c', "cards", Default = false, HelpText = "Set this option to export gathering phase cards. Multiple exports can be done simultaneously.")]
         public bool ExportCards { get; set; } = false;
 
+        [Option('m', "maps", Default = false, HelpText = "Set this option to export maps cards. Multiple exports can be done simultaneously.")]
+        public bool ExportMaps { get; set; } = false;
+
         [Option('s', "separator", Default = "Tab", HelpText = "What separator character to use in CSV format.")]
         public string? Separator { get; set; } = "\t";
     }

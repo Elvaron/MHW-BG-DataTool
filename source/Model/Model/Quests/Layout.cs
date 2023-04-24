@@ -11,7 +11,7 @@ namespace Model.Model.Quests
         /// Monster starting position
         /// </summary>
         [JsonPropertyName("monsters")]
-        public List<MonsterPlacement>? Monster { get; set; }
+        public List<MonsterPlacement>? Monsters { get; set; }
 
         /// <summary>
         /// Player starting positions

@@ -17,7 +17,12 @@ namespace DataTool.IO
             {
                 string input = File.ReadAllText(path);
 
-                var result = System.Text.Json.JsonSerializer.Deserialize<DataFile>(input);
+                var result = JsonSerializer.Deserialize<DataFile>(input);
+
+                if (result != null)
+                {
+                    result.Filename = Path.GetFileNameWithoutExtension(path);
+                }
 
                 return result;
             }

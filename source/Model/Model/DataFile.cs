@@ -18,7 +18,7 @@ namespace Model.Model
         /// Having a neutral root node is purely future-proofing
         /// </remarks>
         [JsonPropertyName("quest-books")]
-        public List<QuestBook>? QuestBook { get; set; }
+        public List<QuestBook>? QuestBooks { get; set; }
 
         /// <summary>
         /// Copyright info
@@ -43,5 +43,11 @@ namespace Model.Model
         /// </summary>
         [JsonPropertyName("time-card-decks")]
         public TimeCardDeckContainer? TimeCardDecks { get; set; }
+
+        /// <summary>
+        /// Filename without extension
+        /// </summary>
+        [JsonIgnore]
+        public string? Filename { get; set; }
     }
 }

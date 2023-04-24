@@ -48,7 +48,7 @@ namespace DataTool.IO
 
                 var dataFile = new DataFile
                 {
-                    QuestBook = new List<QuestBook>
+                    QuestBooks = new List<QuestBook>
                     {
                         new()
                         {
