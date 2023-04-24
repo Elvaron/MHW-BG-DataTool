@@ -83,6 +83,7 @@ Each quest book may contain the following information:
 + `version` allows for data versioning, e.g. to keep track of errata
 + `quests` contains a collection of quests as detailed below
 + `gathering-card-decks` contains gathering phase card decks
++ `zone` these quests takes place, e.g. `ancient-forest|wildspire-waste|elders-recess|rotten-vale|coral-highlands`
 
 #### Quests
 

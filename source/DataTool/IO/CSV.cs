@@ -1,5 +1,6 @@
 ﻿using DataTool.CommandLineOptions;
 using Model.Model;
+using System.IO.MemoryMappedFiles;
 
 namespace DataTool.IO
 {
@@ -30,6 +31,8 @@ namespace DataTool.IO
         private const string PlayerNode = @"E:\P\MHW-BG-QuestCards\source\images\terrain-nodes\hunter-button.png";
 
         private const string MonsterIconFolder = @"E:\P\MHW-BG-QuestCards\source\images\monster-icons";
+        private const string LayoutFolder = @"E:\P\MHW-BG-QuestCards\source\layouts";
+        private const string ZonesFolder = @"E:\P\MHW-BG-QuestCards\source\images\zones";
 
         internal static int WriteCSV(ExportCSV options)
         {
@@ -88,6 +91,9 @@ namespace DataTool.IO
             // Write backsides
             var outputFileBacks = Path.Combine(outputDirectory, $"quests-backs-{dataFile.Filename}.csv");
 
+            // Write frontsides
+            var outputFileFronts = Path.Combine(outputDirectory, $"quests-fronts-{dataFile.Filename}.csv");
+
             // Images
             var buttons = Directory.GetFiles(MonsterIconFolder, "*.png");
 
@@ -102,11 +108,54 @@ namespace DataTool.IO
                 monsters[key] = button;
             }
 
-            // Header
-            var headerLine = "CardReference\tDifficultyIcon\tMonsterIcon";
-            var outputLines = new List<string>
+            var mapImages = Directory.GetFiles(LayoutFolder, "*.png");
+            var maps = new Dictionary<string, string>();
+            foreach (var mapImage in mapImages)
             {
-                headerLine
+                var key = Path.GetFileNameWithoutExtension(mapImage);
+                maps[key] = mapImage;
+            }
+
+            var zoneImages = Directory.GetFiles(ZonesFolder, "*.png");
+            var zones = new Dictionary<string, string>();
+            foreach (var zoneImage in zoneImages)
+            {
+                var key = Path.GetFileNameWithoutExtension(zoneImage);
+                zones[key] = zoneImage;
+            }
+
+            var scoutflyLevel = dataFile.Glossary?.ScoutflyLevel?.Get(language) ?? "Scoutfly Level";
+            var timeLimit = dataFile.Glossary?.TimeLimit?.Get(language) ?? "Time Limit";
+            var startingPoints = dataFile.Glossary?.StartingPoints?.Get(language) ?? "Starting Points";
+            var timeCards = dataFile.Glossary?.TimeCards?.Get(language) ?? "time cards";
+
+            // Header Fronts
+            var headerLineBack = "CardReference\tDifficultyIcon\tMonsterIcon";
+            var outputLinesBack = new List<string>
+            {
+                headerLineBack
+            };
+
+            // Header Backs
+            var headerLinesFront = new List<string> {
+                "GlossaryScoutflyLevel",
+                "GlossaryStartingPoints",
+                "GlossaryTimeLimit",
+                "GlossaryTimeCards",
+                "MonsterName",
+                "PageReference",
+                "QuestTypeFirstLine",
+                "QuestTypeSecondLine",
+                "ScoutflyLevelRange",
+                "StartingPointsList",
+                "TimeCardsAmount",
+                "MapImage",
+                "Zone",
+                "DifficultyImage"
+            };
+            var outputLinesFront = new List<string>
+            {
+                string.Join("\t", headerLinesFront)
             };
 
             foreach (var questbook in dataFile.QuestBooks)
@@ -125,6 +174,16 @@ namespace DataTool.IO
 
                     var outputArray = new string[3];
 
+                    var outputArrayFront = new string[14];
+
+                    /* Glossary */
+                    outputArrayFront[0] = scoutflyLevel;
+                    outputArrayFront[1] = startingPoints;
+                    outputArrayFront[2] = timeLimit;
+                    outputArrayFront[3] = timeCards;
+
+                    outputArrayFront[4] = quest.QuestName?.Get(language) ?? " ";
+
                     // Dataset Name
                     //outputArray[0] = quest.QuestId ?? $"{quest.MonsterId}-{quest.Difficulty}";
 
@@ -133,19 +192,60 @@ namespace DataTool.IO
                     var page = dataFile.Glossary?.AbbreviationPage?.Get(language);
                     var pageNumber = quest.Page.HasValue ? (string.IsNullOrEmpty(page) ? $"{quest.Page}" : $"{page} {quest.Page}") : "";
                     outputArray[0] = string.IsNullOrEmpty(shortTitle) ? pageNumber : $"{shortTitle}-{pageNumber}";
+                    outputArrayFront[5] = outputArray[0];
 
                     outputArray[1] = getDifficultyImage(quest.Difficulty);
+                    outputArrayFront[13] = outputArray[1];
 
                     if (monsters.TryGetValue(quest.MonsterId, out var monsterImage))
                     {
                         outputArray[2] = monsterImage;
                     }
 
-                    outputLines.Add(string.Join("\t", outputArray));
+                    outputLinesBack.Add(string.Join("\t", outputArray));
+
+                    var title = quest.Category?.Get(language) ?? "";
+                    var parts = title.Split(" ");
+                    // Tempered
+                    outputArrayFront[6] = (parts.Length > 0) ? parts[0] : " ";
+                    var remainder = parts.ToList();
+                    if (remainder.Count > 0)
+                    {
+                        remainder.RemoveAt(0);
+                    }
+                    // Investigation Quest
+                    outputArrayFront[7] = (remainder.Count > 1) ? string.Join(" ", remainder) : remainder.Count > 0 ? remainder[0] :" ";
+
+                    // Scoutfly level range
+                    outputArrayFront[8] = $"{quest.ScoutflyLevel?.Minimum} - {quest.ScoutflyLevel?.Maximum}";
+
+                    // Starting points list
+                    if (quest.Starting != null)
+                    {
+                        outputArrayFront[9] = string.Join(", ", quest.Starting);
+                    }
+
+                    // Time cards
+                    outputArrayFront[10] = $"{quest.TimeLimit}";
+
+                    // Map
+                    if (quest.QuestId != null && maps.ContainsKey(quest.QuestId))
+                    {
+                        outputArrayFront[11] = maps[quest.QuestId];
+                    }
+
+                    // Zone
+                    if (questbook.Zone != null && zones.ContainsKey(questbook.Zone))
+                    {
+                        outputArrayFront[12] = zones[questbook.Zone];
+                    }
+
+                    outputLinesFront.Add(string.Join("\t", outputArrayFront));
                 }
             }
 
-            File.WriteAllLines(outputFileBacks, outputLines, System.Text.Encoding.UTF8);
+            File.WriteAllLines(outputFileBacks, outputLinesBack, System.Text.Encoding.UTF8);
+            File.WriteAllLines(outputFileFronts, outputLinesFront, System.Text.Encoding.UTF8);
 
             return 0;
         }

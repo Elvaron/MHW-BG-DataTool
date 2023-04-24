@@ -32,6 +32,12 @@ namespace Model.Model.Quests
         public string? Version { get; set; }
 
         /// <summary>
+        /// Zone
+        /// </summary>
+        [JsonPropertyName("zone")]
+        public string? Zone { get; set; }
+
+        /// <summary>
         /// Printed quests
         /// </summary>
         /// <remarks>
