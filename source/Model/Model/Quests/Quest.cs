@@ -41,6 +41,12 @@ namespace Model.Model.Quests
         public int? Difficulty { get; set; }
 
         /// <summary>
+        /// What page is this quest on?
+        /// </summary>
+        [JsonPropertyName("page")]
+        public int? Page { get; set; }
+
+        /// <summary>
         /// How many time cards to pull?
         /// </summary>
         [JsonPropertyName("time-limit")]

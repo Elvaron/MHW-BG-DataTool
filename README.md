@@ -69,6 +69,7 @@ Further structural data may be suggested by the community in due time.
 Current glossary terms:
 
 + `rule-box-concat` to display the *or* between alternatives on gathering phase cards
++ `abbreviation-page` to display the *P.* to refer to a book page
 
 ### Quest Book
 
@@ -90,6 +91,7 @@ Each quest has a number of properties:
 + `quest-name` is the localizable name of the goal of the quest, usually a monster name, but it could potentially be anything.
 + `difficulty` is the numerical representation of the quest difficulty, i.e. `1` for a 1-star assigned quest
 + `time-limit` is the number of time cards available to the players
++ `page` is the numbered page in the questbook this quest appears on
 + `physiology` contains the physiology card for the monster and difficulty
 + `scoutfly-level` is the Scoutfly Level for behavior deck construction, containing
     + `min` numeric value

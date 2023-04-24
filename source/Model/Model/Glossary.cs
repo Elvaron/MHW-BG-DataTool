@@ -9,9 +9,16 @@ namespace Model.Model
     public class Glossary
     {
         /// <summary>
-        /// The story-like instruction for the players
+        /// Translation for "or"
         /// </summary>
         [JsonPropertyName("rule-box-concat")]
         public i18nString? RuleBoxConcat { get; set; }
+
+        /// <summary>
+        /// Translation for P.
+        /// </summary>
+        [JsonPropertyName("abbreviation-page")]
+        public i18nString? AbbreviationPage { get; set; }
+        
     }
 }

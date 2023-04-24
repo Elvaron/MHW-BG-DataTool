@@ -16,6 +16,12 @@ namespace DataTool.IO
         private const string NorthWest = @"E:\P\MHW-BG-QuestCards\source\images\compass\north-west.png";
         private const string SouthWest = @"E:\P\MHW-BG-QuestCards\source\images\compass\south-west.png";
 
+        private const string One = @"E:\P\MHW-BG-QuestCards\source\images\difficulty\1-star.png";
+        private const string Two = @"E:\P\MHW-BG-QuestCards\source\images\difficulty\2-stars.png";
+        private const string Three = @"E:\P\MHW-BG-QuestCards\source\images\difficulty\3-stars.png";
+        private const string Four = @"E:\P\MHW-BG-QuestCards\source\images\difficulty\4-stars.png";
+        private const string Five = @"E:\P\MHW-BG-QuestCards\source\images\difficulty\5-stars.png";
+
         private const string EmptyNode = @"E:\P\MHW-BG-QuestCards\source\images\terrain-nodes\blank-node-350.png";
         private const string BushNode = @"E:\P\MHW-BG-QuestCards\source\images\terrain-nodes\bush-button.png";
         private const string PondNode = @"E:\P\MHW-BG-QuestCards\source\images\terrain-nodes\pond-button.png";
@@ -74,6 +80,73 @@ namespace DataTool.IO
 
         internal static int WriteQuests(DataFile dataFile, string outputDirectory, string language)
         {
+            if (dataFile == null || dataFile.QuestBooks == null)
+            {
+                return 1;
+            }
+
+            // Write backsides
+            var outputFileBacks = Path.Combine(outputDirectory, $"quests-backs-{dataFile.Filename}.csv");
+
+            // Images
+            var buttons = Directory.GetFiles(MonsterIconFolder, "*.png");
+
+            var monsters = new Dictionary<string, string>();
+            foreach (var button in buttons)
+            {
+                var key = Path.GetFileNameWithoutExtension(button);
+                if (key.EndsWith("-button"))
+                {
+                    continue;
+                }
+                monsters[key] = button;
+            }
+
+            // Header
+            var headerLine = "CardReference\tDifficultyIcon\tMonsterIcon";
+            var outputLines = new List<string>
+            {
+                headerLine
+            };
+
+            foreach (var questbook in dataFile.QuestBooks)
+            {
+                if (questbook.Quests == null)
+                {
+                    continue;
+                }
+
+                foreach (var quest in questbook.Quests)
+                {
+                    if (quest.MonsterId == null)
+                    {
+                        continue;
+                    }
+
+                    var outputArray = new string[3];
+
+                    // Dataset Name
+                    //outputArray[0] = quest.QuestId ?? $"{quest.MonsterId}-{quest.Difficulty}";
+
+                    // Card Reference
+                    var shortTitle = questbook.ShortTitle?.Get(language);
+                    var page = dataFile.Glossary?.AbbreviationPage?.Get(language);
+                    var pageNumber = quest.Page.HasValue ? (string.IsNullOrEmpty(page) ? $"{quest.Page}" : $"{page} {quest.Page}") : "";
+                    outputArray[0] = string.IsNullOrEmpty(shortTitle) ? pageNumber : $"{shortTitle}-{pageNumber}";
+
+                    outputArray[1] = getDifficultyImage(quest.Difficulty);
+
+                    if (monsters.TryGetValue(quest.MonsterId, out var monsterImage))
+                    {
+                        outputArray[2] = monsterImage;
+                    }
+
+                    outputLines.Add(string.Join("\t", outputArray));
+                }
+            }
+
+            File.WriteAllLines(outputFileBacks, outputLines, System.Text.Encoding.UTF8);
+
             return 0;
         }
 
@@ -219,6 +292,19 @@ namespace DataTool.IO
                 case 7: return West;
                 case 8: return NorthWest;
                 default: return North;
+            }
+        }
+
+        private static string getDifficultyImage(int? difficulty)
+        {
+            if (difficulty == null) { return ""; }
+            switch (difficulty)
+            {
+                case 2: return Two;
+                case 3: return Three;
+                case 4: return Four;
+                case 5: return Five;
+                default: return One;
             }
         }
 
